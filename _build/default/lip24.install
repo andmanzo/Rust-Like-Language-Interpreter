@@ -1,0 +1,8 @@
+lib: [
+  "_build/install/default/lib/lip24/META"
+  "_build/install/default/lib/lip24/dune-package"
+  "_build/install/default/lib/lip24/opam"
+]
+bin: [
+  "_build/install/default/bin/lip24"
+]
