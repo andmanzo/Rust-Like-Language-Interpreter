@@ -1,4 +1,4 @@
-# dune build
+# dune runtest
 # OCAMLPARAM: unset
 # Shared cache: enabled-except-user-rules
 # Shared cache location: /Users/macaboro/.cache/dune/db
@@ -13,4 +13,303 @@
 #  ; build_dir = In_build_dir "default"
 #  ; instrument_with = []
 #  }
-$ /Users/macaboro/.opam/default/bin/ocamlc.opt -config > /var/folders/t9/td985nqn6m38wwd3xyz_j1mh0000gn/T/dune_62d859_output
+$ /Users/macaboro/.opam/default/bin/ocamlc.opt -config > /var/folders/t9/td985nqn6m38wwd3xyz_j1mh0000gn/T/dune_d3316c_output
+$ (cd _build/.sandbox/ea108f1937523f516634d4104c0e2a73/default/test && .tinyrust_test_lib.inline-tests/inline_test_runner_tinyrust_test_lib.exe inline-test-runner tinyrust_test_lib -partition test_parser.ml -source-tree-root .. -diff-cmd -)
+> ✔ /Users/macaboro/lip24/examples/01-print.rs
+> ✔ /Users/macaboro/lip24/examples/02-intError.rs
+> ✔ /Users/macaboro/lip24/examples/03-intOk.rs
+> ✔ /Users/macaboro/lip24/examples/04-stringError.rs
+> ✔ /Users/macaboro/lip24/examples/05-stringOk.rs
+> ✔ /Users/macaboro/lip24/examples/06-scopeOk.rs
+> ✔ /Users/macaboro/lip24/examples/07-scopeError.rs
+> ✔ /Users/macaboro/lip24/examples/08-func.rs
+> ✔ /Users/macaboro/lip24/examples/09-proc.rs
+> ✔ /Users/macaboro/lip24/examples/10-ifThenElse.rs
+> ✔ /Users/macaboro/lip24/examples/11-ownError.rs
+> ✔ /Users/macaboro/lip24/examples/12-ownFnError.rs
+> ✔ /Users/macaboro/lip24/examples/13-borrow.rs
+> ✔ /Users/macaboro/lip24/examples/14-borrowFn.rs
+> ✔ /Users/macaboro/lip24/examples/15-borrowError.rs
+> ✔ /Users/macaboro/lip24/examples/16-borrowMut.rs
+> ✔ /Users/macaboro/lip24/examples/17-borrowMutError.rs
+> ✔ /Users/macaboro/lip24/examples/18-loop.rs
+> ✔ /Users/macaboro/lip24/examples/19-loopBreak.rs
+> ✔ /Users/macaboro/lip24/examples/20-loopNested.rs
+> ✔ /Users/macaboro/lip24/examples/21-exprBlock.rs
+> ✔ /Users/macaboro/lip24/examples/22-funExpr.rs
+> ✔ /Users/macaboro/lip24/examples/23-scopeCheck.rs
+$ (cd _build/.sandbox/ea108f1937523f516634d4104c0e2a73/default/test && .tinyrust_test_lib.inline-tests/inline_test_runner_tinyrust_test_lib.exe inline-test-runner tinyrust_test_lib -partition test_trace.ml -source-tree-root .. -diff-cmd -)
+$ /opt/homebrew/bin/git --no-pager diff --no-index --color=always -u _build/default/test/test_trace.ml _build/.sandbox/ea108f1937523f516634d4104c0e2a73/default/test/test_trace.ml.corrected
+> diff --git a/_build/default/test/test_trace.ml b/_build/.sandbox/ea108f1937523f516634d4104c0e2a73/default/test/test_trace.ml.corrected
+> index 0b438e5..20fb750 100644
+> --- a/_build/default/test/test_trace.ml
+> +++ b/_build/.sandbox/ea108f1937523f516634d4104c0e2a73/default/test/test_trace.ml.corrected
+> @@ -135,4 +135,264 @@ let%expect_test "test_trace" =
+>            in
+>            pr "%-9s %-9s\n%s\n\n" title kind output)
+>          [ ("Actual output:", actual); ("Expected:", expected) ])
+> -    examples_dict tests
+> \ No newline at end of file
+> +    examples_dict tests;
+> +  [%expect {|
+> +    ------------------------
+> +    ✔ 01-print.rs
+> +    ------------------------
+> +    Actual output: Ok
+> +    3
+> +    4
+> +
+> +
+> +    Expected: Ok
+> +    3
+> +    4
+> +
+> +
+> +    ------------------------
+> +    ✔ 02-intError.rs
+> +    ------------------------
+> +    Actual output: Error
+> +    [TypeError] Failure("[CannotMutate] cannot mutate immutable variable x")
+> +
+> +    Expected: Error
+> +    [CannotMutate] cannot mutate immutable variable x
+> +
+> +    ------------------------
+> +    ✔ 03-intOk.rs
+> +    ------------------------
+> +    Actual output: Ok
+> +    7
+> +
+> +
+> +    Expected: Ok
+> +    7
+> +
+> +
+> +    ------------------------
+> +    ✔ 04-stringError.rs
+> +    ------------------------
+> +    Actual output: Error
+> +    [TypeError] Failure("[CannotMutate] cannot mutate immutable variable x")
+> +
+> +    Expected: Error
+> +    [CannotMutate] cannot mutate immutable variable x
+> +
+> +    ------------------------
+> +    ✔ 05-stringOk.rs
+> +    ------------------------
+> +    Actual output: Ok
+> +    Ciao, mondo
+> +
+> +
+> +    Expected: Ok
+> +    Ciao, mondo
+> +
+> +
+> +    ------------------------
+> +    ✔ 06-scopeOk.rs
+> +    ------------------------
+> +    Actual output: Ok
+> +    6
+> +    3
+> +
+> +
+> +    Expected: Ok
+> +    6
+> +    3
+> +
+> +
+> +    ------------------------
+> +    ✔ 07-scopeError.rs
+> +    ------------------------
+> +    Actual output: Error
+> +    [TypeError] Failure("[UnboundVar] y not defined in this scope")
+> +
+> +    Expected: Error
+> +    [UnboundVar] y not defined in this scope
+> +
+> +    ------------------------
+> +    ✔ 08-func.rs
+> +    ------------------------
+> +    Actual output: Ok
+> +    10
+> +
+> +
+> +    Expected: Ok
+> +    10
+> +
+> +
+> +    ------------------------
+> +    ✔ 09-proc.rs
+> +    ------------------------
+> +    Actual output: Ok
+> +    7
+> +
+> +
+> +    Expected: Ok
+> +    7
+> +
+> +
+> +    ------------------------
+> +    ✔ 10-ifThenElse.rs
+> +    ------------------------
+> +    Actual output: Ok
+> +    dispari
+> +
+> +
+> +    Expected: Ok
+> +    dispari
+> +
+> +
+> +    ------------------------
+> +    ✔ 11-ownError.rs
+> +    ------------------------
+> +    Actual output: Error
+> +    [TypeError] Failure("[MovedValue] borrow of moved value x")
+> +
+> +    Expected: Error
+> +    [MovedValue] borrow of moved value x
+> +
+> +    ------------------------
+> +    ✔ 12-ownFnError.rs
+> +    ------------------------
+> +    Actual output: Error
+> +    [TypeError] Failure("[MovedValue] borrow of moved value x")
+> +
+> +    Expected: Error
+> +    [MovedValue] borrow of moved value x
+> +
+> +    ------------------------
+> +    ✔ 13-borrow.rs
+> +    ------------------------
+> +    Actual output: Ok
+> +    Ciao
+> +    Ciao
+> +
+> +
+> +    Expected: Ok
+> +    Ciao
+> +    Ciao
+> +
+> +
+> +    ------------------------
+> +    ✔ 14-borrowFn.rs
+> +    ------------------------
+> +    Actual output: Ok
+> +    il parametro prestato: Ciao
+> +    il parametro x: Ciao
+> +
+> +
+> +    Expected: Ok
+> +    il parametro prestato: Ciao
+> +    il parametro x: Ciao
+> +
+> +
+> +    ------------------------
+> +    ✔ 15-borrowError.rs
+> +    ------------------------
+> +    Actual output: Error
+> +    [TypeError] Failure("[DataRace] cannot borrow x as mutable because it is also borrowed as immutable")
+> +
+> +    Expected: Error
+> +    [DataRace] cannot borrow x as mutable because it is also borrowed as immutable
+> +
+> +    ------------------------
+> +    ✔ 16-borrowMut.rs
+> +    ------------------------
+> +    Actual output: Ok
+> +    Ciao, mondo
+> +    Ciao, mondo
+> +
+> +
+> +    Expected: Ok
+> +    Ciao, mondo
+> +    Ciao, mondo
+> +
+> +
+> +    ------------------------
+> +    ✔ 17-borrowMutError.rs
+> +    ------------------------
+> +    Actual output: Error
+> +    [TypeError] Failure("[MutBorrowOfNonMut] cannot borrow x as mutable, as it is not declared as mutable")
+> +
+> +    Expected: Error
+> +    [MutBorrowOfNonMut] cannot borrow x as mutable, as it is not declared as mutable
+> +
+> +    ------------------------
+> +    ✔ 18-loop.rs
+> +    ------------------------
+> +    Actual output: Error
+> +    [TypeError] Tinyrust.Interpreter.Interpreter.OutOfGas(0)
+> +
+> +    Expected: Error
+> +    [OutOfGas] trace run out of gas (50)
+> +
+> +    ------------------------
+> +    ✔ 19-loopBreak.rs
+> +    ------------------------
+> +    Actual output: Ok
+> +    3
+> +    2
+> +    1
+> +    0
+> +
+> +
+> +    Expected: Ok
+> +    3
+> +    2
+> +    1
+> +    0
+> +
+> +
+> +    ------------------------
+> +    ✔ 20-loopNested.rs
+> +    ------------------------
+> +    Actual output: Ok
+> +    0,0
+> +    0,1
+> +    1,0
+> +    1,1
+> +    2,0
+> +    2,1
+> +
+> +
+> +    Expected: Ok
+> +    0,0
+> +    0,1
+> +    1,0
+> +    1,1
+> +    2,0
+> +    2,1
+> +
+> +
+> +    ------------------------
+> +    ✔ 21-exprBlock.rs
+> +    ------------------------
+> +    Actual output: Ok
+> +    7
+> +
+> +
+> +    Expected: Ok
+> +    7
+> +
+> +
+> +    ------------------------
+> +    ✔ 22-funExpr.rs
+> +    ------------------------
+> +    Actual output: Error
+> +    [TypeError] Failure("[UnboundVar] interna non definita")
+> +
+> +    Expected: Error
+> +    [UnboundVar] interna not defined in this scope
+> +
+> +    ------------------------
+> +    ✔ 23-scopeCheck.rs
+> +    ------------------------
+> +    Actual output: Error
+> +    [TypeError] Failure("[UnboundVar] y not defined in this scope")
+> +
+> +    Expected: Error
+> +    [UnboundVar] y not defined in this scope
+> +    |}]
+> \ No newline at end of file
+[1]

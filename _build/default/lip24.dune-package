@@ -1,4 +1,4 @@
 (lang dune 3.17)
 (name lip24)
-(sections (lib .) (bin ../../bin))
-(files (lib (META dune-package opam)) (bin (lip24)))
+(sections (lib .) (doc ../../doc/lip24))
+(files (lib (META dune-package opam)) (doc (README.md)))
