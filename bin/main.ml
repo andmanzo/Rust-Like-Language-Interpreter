@@ -1,4 +1,4 @@
-(* main.ml - Entry point per TinyRust in OCaml *)
+(* File utilizzato in fase di sviluppo per testare il comportamento del progetto *)
 
 open Ast
 open Lexer
@@ -6,7 +6,6 @@ open Parser
 open Interpreter
 
 let () =
-  (* Esempio di codice TinyRust *)
   let source_code = {|
     fn presta(y: &String) {
       println!("{y}");
@@ -63,7 +62,6 @@ let () =
     }
     |} in
 
-  (* 1) LEXER: trasforma il sorgente in token *)
   let tokens = tokenize source_code in
   print_endline "--- TOKENS ---";
   Printf.printf "Lunghezza tokens: %d\n" (List.length tokens);
@@ -108,14 +106,12 @@ let () =
     | NONE -> print_endline "NONE"
   ) tokens;
 
-  (* 2) PARSER: costruisce l'AST *)
   print_endline "Lexing concluso. Inizio il parsing...";
   let ps = init_parser tokens in
   let prog = parse_program ps in
   print_ast prog; 
   print_endline "--- PARSING COMPLETED ---";
 
-  (* 3) INTERPRETE: esegue il programma (run_program) *)
   print_endline "--- OUTPUT ---";
   let gas = 200 in
   run_program prog gas;
